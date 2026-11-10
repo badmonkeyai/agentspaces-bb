@@ -1,0 +1,13 @@
+{:paths ["src"]
+ :tasks {as {:doc "Query a console or host a replicated space"
+             :requires ([agentspaces.bb.cli :as cli])
+             :task (apply cli/-main *command-line-args*)}
+         test {:doc "Run client and CLI tests"
+               :task (shell "bb test/client_test.clj")}
+         smoke {:doc "Check two-peer replication over loopback"
+                :task (shell "sh test/replication.sh")}
+         package {:doc "Build the Apache-licensed source release"
+                  :depends [test]
+                  :task (do
+                          (shell "mkdir -p target")
+                          (shell "tar --exclude=.cpcache -czf target/agentspaces-bb-0.1.0.tar.gz README.md LICENSE NOTICE CHANGELOG.md CONTRIBUTING.md SECURITY.md CODE_OF_CONDUCT.md bb.edn deps.edn bin src host examples test"))}}}

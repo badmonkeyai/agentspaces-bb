@@ -1,0 +1,2 @@
+{:deps {ai.badmonkey.agentspaces/agentspaces-console {:mvn/version "0.6.0"}
+        ai.badmonkey.agentspaces/agentspaces-space {:mvn/version "0.6.0"}}}
